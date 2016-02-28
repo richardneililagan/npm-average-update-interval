@@ -32,11 +32,13 @@
     ]
   },
   "dependencies": {
+    "JSONStream": "1.0.7",
     "bluebird": "3.3.3",
     "chalk": "1.1.1",
     "cheerio": "0.20.0",
     "got": "6.1.1",
     "lodash": "4.5.1",
+    "moment": "2.11.2",
     "observatory": "1.0.0",
     "throat": "2.0.2"
   }
