@@ -3,7 +3,7 @@ var cheerio = require('cheerio')
 var chalk = require('chalk')
 
 var map = require('lodash/map')
-var flatten = require('lodash/flatten')
+var flatten = require('lodash/flattenDeep')
 
 var request = require('./http')
 var log = require('./log')
@@ -21,13 +21,23 @@ function getNpmPackages (url) {
   return request(url)
     .then(result => {
       var $ = cheerio.load(result.body)
-      return map($('.package-details a.name'), item => {
+      return Promise.all(map($('.package-details a.name'), item => {
         var element = cheerio(item)
-        return {
-          name: element.text(),
-          url: `https://www.npmjs.com${ element.attr('href') }`
-        }
-      })
+        var packageDetailsUrl = `https://www.npmjs.com${ element.attr('href') }`
+
+        return request(packageDetailsUrl)
+          .then(result => {
+            var $ = cheerio.load(result.body)
+            var githubLink = $('.sidebar ul.box:first li:nth-child(3) a').attr('href')
+
+            return {
+              name: element.text(),
+              url: packageDetailsUrl,
+              github_user: githubLink.split('/')[3],
+              github_repo: githubLink.split('/')[4]
+            }
+          })
+      }))
     })
 }
 
@@ -39,7 +49,7 @@ function getTargetPackages (count) {
   }
 
   return Promise.all(tasks)
-  .then(results => flatten(results))
+  .then(results => flattenDeep(results))
   .then(results => results.splice(0, count))
   .catch(err => {
     console.log(chalk.red.bold(err))
