@@ -14,7 +14,7 @@ function requireEnv (name) {
   return val
 }
 
-config.github_username = requireEnv('RELEASESTATS_GITHUB_USERNAME')
-config.github_accesstoken = requireEnv('RELEASESTATS_GITHUB_TOKEN')
+config.github_username = requireEnv('NPMSTATS_GITHUB_USERNAME')
+config.github_accesstoken = requireEnv('NPMSTATS_GITHUB_TOKEN')
 
 module.exports = config
