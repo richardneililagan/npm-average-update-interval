@@ -12,7 +12,7 @@ function * generateTask (count) {
   var current = 0
   var increment = 36
   while(current < count) {
-    yield `https://www.npmjs.com/browse/star?offset=${ current }`
+    yield `https://www.npmjs.com/browse/depended?offset=${ current }`
     current += increment
   }
 }
