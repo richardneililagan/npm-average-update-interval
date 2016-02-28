@@ -50,4 +50,8 @@ This app calculates the metrics it needs by:
 
 1. Clone this repository. This app uses **nodejs** -- make sure you have it installed.
 2. Run `npm install` to get app dependencies (heh).
-3. `npm start`
+3. Define a `NPMSTATS_GITHUB_USERNAME` environment variable to your Github username.
+4. Define a `NPMSTATS_GITHUB_TOKEN` environment variable to a [Github personal access token](https://github.com/settings/tokens).
+5. `npm start`
+
+Steps 3 and 4 are for Github API access.
