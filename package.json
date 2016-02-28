@@ -1,6 +1,6 @@
 {
   "name": "release-stats",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A quick CLI app that generates metrics about npm packages.",
   "main": "index.js",
   "scripts": {
