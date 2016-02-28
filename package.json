@@ -1,0 +1,38 @@
+{
+  "name": "release-stats",
+  "version": "0.0.1",
+  "description": "A quick CLI app that generates metrics about npm packages.",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf lib && babel --source-maps inline --copy-files src --out-dir lib",
+    "test": "node test | tap-spec"
+  },
+  "author": "Richard Neil Ilagan <me@richardneililagan.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "babel-cli": "6.5.1",
+    "babel-plugin-transform-es2015-arrow-functions": "6.5.0",
+    "babel-plugin-transform-es2015-literals": "6.5.0",
+    "babel-plugin-transform-strict-mode": "6.5.0",
+    "eslint": "1.10.3",
+    "eslint-config-standard": "4.4.0",
+    "eslint-plugin-standard": "1.3.2",
+    "tap-spec": "4.1.1",
+    "tape": "4.4.0",
+    "tape-eslint": "1.2.1"
+  },
+  "babel": {
+    "plugins": [
+      "transform-es2015-arrow-functions",
+      "transform-es2015-literals",
+      "transform-strict-mode"
+    ]
+  },
+  "dependencies": {
+    "chalk": "1.1.1",
+    "got": "6.1.1",
+    "lodash": "4.5.1",
+    "observatory": "1.0.0"
+  }
+}
