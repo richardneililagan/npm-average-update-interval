@@ -11,7 +11,8 @@ var log = require('./log')
 function * generateTask (count) {
   var current = 0
   var increment = 36
-  while(current < count) {
+
+  while (current < count) {
     yield `https://www.npmjs.com/browse/depended?offset=${ current }`
     current += increment
   }
@@ -27,7 +28,7 @@ function getNpmPackages (url) {
 
         return {
           name: element.text(),
-          url: `https://www.npmjs.com${ element.attr('href') }`,
+          url: `https://www.npmjs.com${ element.attr('href') }`
         }
       })
     })
@@ -49,7 +50,6 @@ function getNpmPackageDetails (url) {
 }
 
 function getTargetPackages (count) {
-
   var tasks = []
   for (var item of generateTask(count)) {
     tasks.push(getNpmPackages(item))
@@ -66,14 +66,13 @@ function getTargetPackages (count) {
 
       return getNpmPackageDetails(item.url)
         .then(result => Object.assign(item, result))
-        .then(result => {
+        .then(_ => {
           var itemtask = item.__task
           if (item.github_user) {
             itemtask
               .status('Analyzing')
               .details(chalk.bold.cyan(`${ item.github_user }/${ item.github_repo }`))
-          }
-          else {
+          } else {
             itemtask.done(chalk.bold.red('Invalid'))
           }
 

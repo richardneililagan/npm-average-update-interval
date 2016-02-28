@@ -35,9 +35,7 @@ require('./target-packages')(targetCount)
         .then(result => {
           item.tags = JSON.parse(result.body)
           item.__task.details(`${ item.tags.length } tags found`)
-          return item
-        })
-        .then(result => {
+
           return Promise.all(map(item.tags, tag => {
             return request(`https://api.github.com/repos/${ item.github_user }/${ item.github_repo }/git/commits/${ tag.commit.sha }`, {
               auth: `${ config.github_username }:${ config.github_accesstoken }`
