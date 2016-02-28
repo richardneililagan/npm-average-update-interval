@@ -11,7 +11,7 @@ var config = require('./config')
 var log = require('./log')
 
 // let's do this shit
-var targetCount = 5
+var targetCount = 50
 var targetDays = 30     // last 30 days
 
 var startingDate = +(moment().add(-targetDays, 'days'))
