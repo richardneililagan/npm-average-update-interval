@@ -4,6 +4,8 @@
   "description": "A quick CLI app that generates metrics about npm packages.",
   "main": "index.js",
   "scripts": {
+    "start": "node lib/index",
+    "start:dev": "node src/index",
     "build": "rm -rf lib && babel --source-maps inline --copy-files src --out-dir lib",
     "test": "node test | tap-spec"
   },
@@ -30,9 +32,12 @@
     ]
   },
   "dependencies": {
+    "bluebird": "3.3.3",
     "chalk": "1.1.1",
+    "cheerio": "0.20.0",
     "got": "6.1.1",
     "lodash": "4.5.1",
-    "observatory": "1.0.0"
+    "observatory": "1.0.0",
+    "throat": "2.0.2"
   }
 }
